@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Spinner from '../general/Spinner';
+import Fatal from '../general/Fatal';
+import Table from './Table';
 import * as usersActions from '../../actions/usersActions';
 
 class Users extends Component {
@@ -7,28 +10,24 @@ class Users extends Component {
     this.props.getAll();
   }
 
-  putFiles = () =>
-    this.props.users.map((user) => (
-      <tr key={user.id}>
-        <td>{user.name}</td>
-        <td>{user.email}</td>
-        <td>{user.website}</td>
-      </tr>
-    ));
+  putContent = () => {
+    debugger;
+    if (this.props.cargando) {
+      return <Spinner />;
+    }
+
+    if (this.props.error) {
+      return <Fatal message={this.props.error} />;
+    }
+
+    return <Table />;
+  };
 
   render() {
     return (
       <div>
-        <table className='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Website</th>
-            </tr>
-          </thead>
-          <tbody>{this.putFiles()}</tbody>
-        </table>
+        <h1>Users</h1>
+        {this.putContent()}
       </div>
     );
   }
