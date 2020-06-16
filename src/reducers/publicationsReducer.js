@@ -1,17 +1,17 @@
-import { GET_ALL, LOADING, ERROR } from '../types/usersTypes';
+import { GET_PER_USER, LOADING, ERROR } from '../types/publicationsTypes';
 
 const INITIAL_STATE = {
-  users: [],
+  publications: [],
   loading: false,
   error: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_ALL:
+    case GET_PER_USER:
       return {
         ...state,
-        users: action.payload,
+        publications: action.payload,
         loading: false,
         error: '',
       };

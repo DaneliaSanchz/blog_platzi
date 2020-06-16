@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { GET_ALL, CARGANDO, ERROR } from '../types/usersTypes';
+import { GET_ALL, LOADING, ERROR } from '../types/usersTypes';
 
 export const getAll = () => async (dispatch) => {
   dispatch({
-    type: CARGANDO,
+    type: LOADING,
   });
   try {
     const result = await axios.get(
@@ -16,7 +16,7 @@ export const getAll = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ERROR,
-      payload: 'Opps... Something bad happened, please tyr later :(',
+      payload: 'Opps... Something bad happened, please try later :(',
     });
   }
 };
